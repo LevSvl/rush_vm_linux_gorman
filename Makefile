@@ -36,7 +36,11 @@ QEMU_OPTS += \
 qemu:
 	$(QEMU) $(QEMU_OPTS)
 
-qemu-gdb:
+# Change create_gdb_scripts.sh manually to debug kernel
+$(BUILD_DIR)/.gdbinit:
+	$(SHELL) create_gdb_scripts.sh
+
+qemu-gdb: $(BUILD_DIR)/.gdbinit
 	$(QEMU) $(QEMU_OPTS) -s -S
 
 .PHONY: clean
