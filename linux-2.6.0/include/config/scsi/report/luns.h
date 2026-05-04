@@ -1,0 +1,1 @@
+#define CONFIG_SCSI_REPORT_LUNS 1
