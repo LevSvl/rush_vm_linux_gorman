@@ -32,7 +32,7 @@ EOF
 
 chmod +x init
 
-# Создаем initrd
+# Create compressed image
 find . | cpio -o --format=newc | gzip -9 > $INITRD_TARGET_PATH
 
 echo "$0 done OK"
