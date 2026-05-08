@@ -1,3 +1,11 @@
+/*
+ * Эта программа позволяет понять и отладить, как именно
+ * изменяются счетчики mm_struct->mm_users и mm_struct->mm_count
+ * для процесса в целом.
+ * 
+ * См. fork.c, sched.c, exit.c
+ */
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <pthread.h>
@@ -18,6 +26,13 @@ void __attribute__((noreturn)) *sleep_while_not(void *xflag)
     pr_chld("Waiting...\n");
     while (*flag == 0)
         ;
+    /*
+     * Можно раскомментировать, чтобы получить идеальную картину,
+     * а можно оставить как есть, чтобы увидеть реальную картину,
+     * где оба потока конкурируют за доступ к полям mm_struct, когда
+     * главный поток отдает процессор перед уменьшением mm_users.
+     */
+    // sleep(100);
     pr_chld("Now im finished. Exiting...\n");
     pthread_exit(0);
 }
