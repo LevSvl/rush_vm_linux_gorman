@@ -7,7 +7,7 @@ TARGET_KERNEL = $(BUILD_DIR)/bzImage
 
 all: $(TARGET_KERNEL) $(BUILD_DIR)/initrd.img.gz
 
-$(BUILD_DIR):
+$(BUILD_DIR) $(ROOTFS):
 	@mkdir -p $@
 
 export BUILD_DIR
